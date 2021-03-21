@@ -30,6 +30,12 @@ extension AVPlayer.TimeControlStatus: CustomStringConvertible {
     }
 }
 
+extension AVPlayer.WaitingReason: CustomStringConvertible {
+    public var description: String {
+        rawValue
+    }
+}
+
 extension AVPlayerItem.Status: CustomStringConvertible {
     public var description: String {
         switch self {
