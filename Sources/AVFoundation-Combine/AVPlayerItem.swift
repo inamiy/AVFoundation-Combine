@@ -30,7 +30,7 @@ extension AVPlayerItem {
             .eraseToAnyPublisher()
     }
 
-    public var playbackBufferStatePublisher: AnyPublisher<PlayerbackBufferState, Never> {
+    public var playbackBufferStatePublisher: AnyPublisher<PlaybackBufferState, Never> {
         Publishers
             .CombineLatest(
                 isPlaybackBufferEmptyPublisher,

@@ -1,4 +1,4 @@
-public enum PlayerbackBufferState {
+public enum PlaybackBufferState {
     /// Buffer is empty.
     case empty
 
