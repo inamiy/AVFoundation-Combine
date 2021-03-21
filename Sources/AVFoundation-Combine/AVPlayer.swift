@@ -63,7 +63,7 @@ extension AVPlayer {
     }
 
     /// - Returns: Publisher with one of `paused`, `waitingToPlay`, `playing`.
-    public var timeControlStatusPublisher: AnyPublisher<PlayingStatus, Never> {
+    public var playingStatusPublisher: AnyPublisher<PlayingStatus, Never> {
         publisher(for: \.timeControlStatus)
             .compactMap { [weak self] status -> PlayingStatus? in
                 switch status {
