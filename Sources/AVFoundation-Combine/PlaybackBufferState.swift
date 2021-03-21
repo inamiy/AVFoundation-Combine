@@ -1,4 +1,4 @@
-public enum PlaybackBufferState {
+public enum PlaybackBufferState: Hashable {
     /// Buffer is empty.
     case empty
 

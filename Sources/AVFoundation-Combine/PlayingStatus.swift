@@ -1,7 +1,7 @@
 import AVFoundation
 
 /// Enhanced `AVPlayer.TimeControlStatus`.
-public enum PlayingStatus {
+public enum PlayingStatus: Hashable {
     case paused
 
     /// - reason: One of `noItemToPlay`, `evaluatingBufferingRate`, `toMinimizeStalls`.
