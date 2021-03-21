@@ -39,16 +39,15 @@ extension AVPlayer {
         }
     }
 
-    public func boundaryTimePublisher(times: [CMTime], queue: DispatchQueue? = nil) -> AnyPublisher<AVPlayer, Never> {
+    public func boundaryTimePublisher(times: [CMTime], queue: DispatchQueue? = nil) -> AnyPublisher<Void, Never> {
         AnyPublisher.create { [weak self] subscriber in
             guard let self = self else {
                 subscriber.send(completion: .finished)
                 return AnyCancellable {}
             }
 
-            let token = self.addBoundaryTimeObserver(forTimes: times.map(NSValue.init), queue: queue) { [weak self] in
-                guard let self = self else { return }
-                subscriber.send(self)
+            let token = self.addBoundaryTimeObserver(forTimes: times.map(NSValue.init), queue: queue) {
+                subscriber.send(())
             }
 
             return AnyCancellable { [weak self] in
