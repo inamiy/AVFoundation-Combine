@@ -2,7 +2,7 @@ import AVFoundation
 import Combine
 
 extension AVPlayer {
-    func seekPublisher(
+    public func seekPublisher(
         to time: CMTime,
         toleranceBefore: CMTime = .zero,
         toleranceAfter: CMTime = .zero
@@ -22,7 +22,7 @@ extension AVPlayer {
         }
     }
 
-    func periodicTimePublisher(interval: CMTime, queue: DispatchQueue? = nil) -> AnyPublisher<CMTime, Never> {
+    public func periodicTimePublisher(interval: CMTime, queue: DispatchQueue? = nil) -> AnyPublisher<CMTime, Never> {
         AnyPublisher.create { [weak self] subscriber in
             guard let self = self else {
                 subscriber.send(completion: .finished)
@@ -39,7 +39,7 @@ extension AVPlayer {
         }
     }
 
-    func boundaryTimePublisher(times: [CMTime], queue: DispatchQueue? = nil) -> AnyPublisher<AVPlayer, Never> {
+    public func boundaryTimePublisher(times: [CMTime], queue: DispatchQueue? = nil) -> AnyPublisher<AVPlayer, Never> {
         AnyPublisher.create { [weak self] subscriber in
             guard let self = self else {
                 subscriber.send(completion: .finished)

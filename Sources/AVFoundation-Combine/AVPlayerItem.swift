@@ -57,7 +57,7 @@ extension AVPlayerItem {
             .eraseToAnyPublisher()
     }
 
-    var timedMetadataGroupsPublisher: AnyPublisher<[AVTimedMetadataGroup], Never> {
+    public var timedMetadataGroupsPublisher: AnyPublisher<[AVTimedMetadataGroup], Never> {
         MetadataPublisher(item: self)
             .eraseToAnyPublisher()
     }
