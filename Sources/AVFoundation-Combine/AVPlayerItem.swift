@@ -107,3 +107,25 @@ extension AVPlayerItem {
             .eraseToAnyPublisher()
     }
 }
+
+// MARK: - timebaseRate
+
+extension AVPlayerItem {
+    public var timebaseRatePublisher: AnyPublisher<Double, Never> {
+        NotificationCenter.default
+            .publisher(for: .timebaseEffectiveRateChanged, object: self.timebase)
+            .map { notification -> CMTimebase? in
+                let obj = notification.object as AnyObject
+                // Workaround for `as?` conditional downcast to corefoundation type.
+                return CFGetTypeID(obj) == CMTimebase.typeID ? (obj as! CMTimebase) : nil
+            }
+            .prepend(self.timebase)
+            .map { $0?.rate ?? .nan }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension Notification.Name {
+    fileprivate static let timebaseEffectiveRateChanged
+        = Notification.Name(rawValue: kCMTimebaseNotification_EffectiveRateChanged as String)
+}
