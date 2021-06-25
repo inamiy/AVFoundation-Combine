@@ -91,6 +91,7 @@ extension AVPlayer {
             .eraseToAnyPublisher()
     }
 
+    @available(*, deprecated, message: "Does not work. Use `AVAudioSession.sharedInstance().outputVolumePublisher` instead.")
     public var volumePublisher: AnyPublisher<Float, Never> {
         publisher(for: \.volume)
             .eraseToAnyPublisher()
